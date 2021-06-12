@@ -18,6 +18,10 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="mdc-typography">
+  <div id="micromess" class="hidden">
+    <p class="mdc-typography--body1">微信中无法正常录音，请点击右上角菜单，在浏览器中打开。</p>
+  </div>
+  <script> if (/micromess/i.test(navigator.userAgent)) { document.getElementById('micromess').classList.remove('hidden') } </script>
   <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
@@ -115,6 +119,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@material/form-field@3.1.0/dist/mdc.formField.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.5/runtime.js"></script>
   <script src="main.es5.js"></script>
-  <script async defer data-website-id="19e91aa2-a8f5-4eff-a294-44b252d46474" src="https://umami.keeer.net/umami.js"></script>
+  <nscript async defer data-website-id="19e91aa2-a8f5-4eff-a294-44b252d46474" src="https://umami.keeer.net/umami.js"></script>
 </body>
 </html>
