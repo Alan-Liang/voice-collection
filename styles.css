@@ -1,0 +1,78 @@
+html, body { margin: 0; }
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  --mdc-theme-primary: #c62828;
+  color: #222;
+}
+
+.hidden { display: none !important; }
+.step { display: none; }
+.step.current { display: block; }
+main {
+  text-align: center;
+  width: 100%;
+  max-width: 720px;
+}
+#step-introduction {
+  max-width: 400px;
+  text-align: left;
+  margin: 16px auto;
+}
+@media (max-width: 432px) {
+  #step-introduction { margin: 16px; }
+}
+main > div { margin: 16px; }
+
+.type-tip {
+  margin-left: 44px;
+  margin-top: -10px;
+  color: #777;
+}
+#say-wrapper { max-width: 400px; }
+#say { max-height: 150px; }
+#go-wrapper { text-align: right; }
+.mdc-text-field-helper-line { margin-bottom: 16px; }
+
+#record-tip {
+  margin-top: 16px;
+  max-height: 100px;
+  overflow-y: auto;
+  text-align: left;
+  text-align: justify;
+  text-justify: auto;
+}
+#countdown {
+  font-size: 56px;
+  font-weight: 100;
+  height: 100px;
+}
+#recording {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#indicator {
+  color: red;
+  opacity: .5;
+  animation: blink infinite ease 4s;
+  padding-right: 16px;
+  font-size: 16px;
+}
+.stop #indicator { opacity: 0; animation: none; }
+#time { font-size: 42px; font-weight: 100; }
+@keyframes blink {
+  from { opacity: .5; }
+  50% { opacity: 0; }
+  to { opacity: .5; }
+}
+
+.mdc-fab { margin-right: 16px; }
+
+#play, #redo {
+  background-color: #ccc;
+  color: #222;
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2021 届毕业典礼录音收集</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@material/button@0.44.1/dist/mdc.button.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@material/top-app-bar@0.44.1/dist/mdc.top-app-bar.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@material/typography@0.44.1/dist/mdc.typography.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@material/card@3.1.0/dist/mdc.card.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@material/ripple@3.1.0/dist/mdc.ripple.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@material/fab@3.1.0/dist/mdc.fab.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@material/textfield@3.1.0/dist/mdc.textfield.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@material/radio@3.1.0/dist/mdc.radio.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@material/form-field@3.1.0/dist/mdc.form-field.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="mdc-typography">
+  <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <span class="mdc-top-app-bar__title">2021 届毕业典礼录音收集</span>
+      </section>
+    </div>
+  </header>
+  <main class="mdc-top-app-bar--fixed-adjust">
+    <div id="step-introduction" class="step current">
+      <p class="mdc-typography--body1">
+        请选择要提交的内容：<br>
+        <span class="mdc-typography--caption">截止时间：6 月 14 日 19:00</span>
+      </p>
+      <div class="mdc-form-field">
+        <div class="mdc-radio">
+          <input class="mdc-radio__native-control" type="radio" id="memoir" name="type" value="memoir" checked>
+          <div class="mdc-radio__background">
+            <div class="mdc-radio__outer-circle"></div>
+            <div class="mdc-radio__inner-circle"></div>
+          </div>
+        </div>
+        <label for="memoir">对老师们的留言</label>
+      </div>
+      <div class="mdc-typography--caption type-tip">也许是一段和老师有关的难忘回忆，也许是对谆谆教诲和如水师恩的感激与感怀，也许是对老师未来工作的祝福、生活的期待……</div>
+      <div class="mdc-form-field">
+        <div class="mdc-radio">
+          <input class="mdc-radio__native-control" type="radio" id="meme" name="type" value="meme">
+          <div class="mdc-radio__background">
+            <div class="mdc-radio__outer-circle"></div>
+            <div class="mdc-radio__inner-circle"></div>
+          </div>
+        </div>
+        <label for="meme">对老师口头禅的模仿</label>
+      </div>
+      <div class="mdc-typography--caption type-tip">「口头禅」是一个老师特色的标志，或许也是 TA 留给同学们最深刻的回忆之一。相信同学们一定对三年高中生活中某些老师的口头禅记忆犹新。</div>
+      <br>
+      <div class="mdc-text-field">
+        <input type="text" id="name" class="mdc-text-field__input" placeholder="我的一位语文老师">
+        <label class="mdc-floating-label" for="name">留言对象</label>
+        <div class="mdc-line-ripple"></div>
+      </div>
+      <div class="mdc-text-field-helper-line">
+        <div class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent" id="name-helper">可以是某一位老师、某一个备课组的老师或年级全体老师，但最好不要出现具体老师的姓名，可以用「我的一位 xx（科目）老师」等代替。</div>
+      </div>
+      <div class="mdc-text-field mdc-text-field--textarea" id="say-wrapper">
+        <textarea id="say" class="mdc-text-field__input" rows="8" cols="40"></textarea>
+        <div class="mdc-notched-outline">
+          <div class="mdc-notched-outline__leading"></div>
+          <div class="mdc-notched-outline__notch">
+            <label for="say" class="mdc-floating-label">心里话</label>
+          </div>
+          <div class="mdc-notched-outline__trailing"></div>
+        </div>
+      </div>
+      <p id="go-wrapper" class="mdc-typography--caption">
+        点击「开始」后，您将有 3 秒钟的时间准备录音。<wbr>点击「开始」按钮即表明您同意将您的文字和录音用于毕业典礼。<br><br>
+        <button id="go" class="mdc-button mdc-button--raised umami--click--go">开始</button>
+      </p>
+    </div>
+    <div id="step-record" class="step">
+      <div id="countdown"></div>
+      <div id="recording" class="hidden">
+        <div id="indicator">⬤</div>
+        <div id="time"></div>
+      </div>
+      <button class="mdc-fab" aria-label="Stop" id="stop" class="hidden">
+        <span class="mdc-fab__icon material-icons">stop</span>
+      </button>
+      <span id="stopped" class="hidden">
+        <button class="mdc-button umami--click--play" id="play">
+          <span class="mdc-button__icon material-icons">play_arrow</span>
+          <span class="mdc-button__label">播放</span>
+        </button>
+        <button class="mdc-button mdc-button--raised umami--click--upload" id="upload">
+          <span class="mdc-button__icon material-icons">upload</span>
+          <span class="mdc-button__label">上传</span>
+        </button>
+        <button class="mdc-button umami--click--redo" id="redo">
+          <span class="mdc-button__icon material-icons">refresh</span>
+          <span class="mdc-button__label">重新录制</span>
+        </button>
+        <br><br>
+        <button id="back-1" class="mdc-button umami--click--back-1">返回</button>
+      </span>
+      <div id="record-tip" class="mdc-typography--body1"></div>
+    </div>
+    <div id="step-success" class="step">
+      <h2 class="mdc-typography--headline6">您的录音已经提交，谢谢！</h2>
+      <button id="back" class="mdc-button mdc-button--outlined umami--click--back">返回</button>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@material/textfield@3.1.0/dist/mdc.textfield.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@material/ripple@3.1.0/dist/mdc.ripple.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@material/radio@3.1.0/dist/mdc.radio.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@material/form-field@3.1.0/dist/mdc.formField.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.5/runtime.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
