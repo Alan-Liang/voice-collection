@@ -42,4 +42,4 @@ router.post('/upload', body({ multipart: true }), async ctx => {
   ctx.status = 204
   console.log('[DEBUG] upload done.')
 })
-router.get('/(.*)', static(__dirname))
+router.get('/(.*)', static(`${__dirname}/static`))
