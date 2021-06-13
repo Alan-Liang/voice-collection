@@ -112,10 +112,8 @@ async function requestPermissions () {
     return await navigator.mediaDevices.getUserMedia({ audio: true })
   } catch (e) {
     console.error(e)
-    if (e.name === 'NotAllowedError') {
-      alert('请授权使用麦克风')
-      throw e
-    }
+    if (e.name === 'NotAllowedError') alert('请授权使用麦克风')
+    throw e
   }
 }
 function startRecording (stream) {

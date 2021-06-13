@@ -22,6 +22,10 @@
     <p class="mdc-typography--body1">微信中无法正常录音，请点击右上角菜单，在浏览器中打开。</p>
   </div>
   <script> if (/micromess/i.test(navigator.userAgent)) { document.getElementById('micromess').classList.remove('hidden') } </script>
+  <div id="outdated-browser" class="hidden">
+    <p class="mdc-typography--body1">您的浏览器没有录音功能，请使用现代浏览器打开此地址。我们推荐您使用 <a href="">Mozilla Firefox</a> 的最新版本。</p>
+  </div>
+  <script> if (!/micromess/i.test(navigator.userAgent) && (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia)) { document.getElementById('outdated-browser').classList.remove('hidden') } </script>
   <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
@@ -78,34 +82,39 @@
       </div>
       <p id="go-wrapper" class="mdc-typography--caption">
         点击「开始」后，您将有 3 秒钟的时间准备录音。<wbr>点击「开始」按钮即表明您同意将您的文字和录音用于毕业典礼。<br><br>
-        <button id="go" class="mdc-button mdc-button--raised umami--click--go">开始</button>
+        <button id="go" class="mdc-button mdc-button--raised umami--click--go">
+          <span class="mdc-button__icon material-icons">arrow_forward</span>
+          <span class="mdc-button__label">开始</span>
+        </button>
       </p>
     </div>
     <div id="step-record" class="step">
-      <div id="countdown"></div>
-      <div id="recording" class="hidden">
-        <div id="indicator">⬤</div>
-        <div id="time"></div>
+      <div id="controls">
+        <div id="countdown"></div>
+        <div id="recording" class="hidden">
+          <div id="indicator">⬤</div>
+          <div id="time"></div>
+        </div>
+        <button class="mdc-fab hidden" aria-label="Stop" id="stop">
+          <span class="mdc-fab__icon material-icons">stop</span>
+        </button>
+        <span id="stopped" class="hidden">
+          <button class="mdc-button umami--click--play" id="play">
+            <span class="mdc-button__icon material-icons">play_arrow</span>
+            <span class="mdc-button__label">播放</span>
+          </button>
+          <button class="mdc-button mdc-button--raised umami--click--upload" id="upload">
+            <span class="mdc-button__icon material-icons">upload</span>
+            <span class="mdc-button__label">上传</span>
+          </button>
+          <button class="mdc-button umami--click--redo" id="redo">
+            <span class="mdc-button__icon material-icons">refresh</span>
+            <span class="mdc-button__label">重新录制</span>
+          </button>
+          <br><br>
+          <button id="back-1" class="mdc-button umami--click--back-1">返回</button>
+        </span>
       </div>
-      <button class="mdc-fab" aria-label="Stop" id="stop" class="hidden">
-        <span class="mdc-fab__icon material-icons">stop</span>
-      </button>
-      <span id="stopped" class="hidden">
-        <button class="mdc-button umami--click--play" id="play">
-          <span class="mdc-button__icon material-icons">play_arrow</span>
-          <span class="mdc-button__label">播放</span>
-        </button>
-        <button class="mdc-button mdc-button--raised umami--click--upload" id="upload">
-          <span class="mdc-button__icon material-icons">upload</span>
-          <span class="mdc-button__label">上传</span>
-        </button>
-        <button class="mdc-button umami--click--redo" id="redo">
-          <span class="mdc-button__icon material-icons">refresh</span>
-          <span class="mdc-button__label">重新录制</span>
-        </button>
-        <br><br>
-        <button id="back-1" class="mdc-button umami--click--back-1">返回</button>
-      </span>
       <div id="record-tip" class="mdc-typography--body1"></div>
     </div>
     <div id="step-success" class="step">
@@ -119,6 +128,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@material/form-field@3.1.0/dist/mdc.formField.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.5/runtime.js"></script>
   <script src="main.es5.js"></script>
-  <nscript async defer data-website-id="19e91aa2-a8f5-4eff-a294-44b252d46474" src="https://umami.keeer.net/umami.js"></script>
+  <script async defer data-website-id="19e91aa2-a8f5-4eff-a294-44b252d46474" src="https://umami.keeer.net/umami.js"></script>
 </body>
 </html>

@@ -347,16 +347,10 @@ function _requestPermissions() {
             _context4.prev = 6;
             _context4.t0 = _context4["catch"](0);
             console.error(_context4.t0);
-
-            if (!(_context4.t0.name === 'NotAllowedError')) {
-              _context4.next = 12;
-              break;
-            }
-
-            alert('请授权使用麦克风');
+            if (_context4.t0.name === 'NotAllowedError') alert('请授权使用麦克风');
             throw _context4.t0;
 
-          case 12:
+          case 11:
           case "end":
             return _context4.stop();
         }
